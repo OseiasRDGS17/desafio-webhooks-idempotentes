@@ -12,5 +12,6 @@ namespace WebhookPagamentos.Core.Interfaces
         Task<bool> SalvarEventoBrutoAsync(PagamentoPayload payload);
         Task AtualizarStatusContratoAsync(PagamentoPayload payload);
         Task<System.Collections.Generic.IEnumerable<dynamic>> ListarEventosAsync();
+        Task<System.Collections.Generic.IEnumerable<dynamic>> ListarContratosAsync();
     }
 }

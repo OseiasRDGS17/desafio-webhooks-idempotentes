@@ -56,5 +56,14 @@ namespace WebhookPagamentos.Api.Controllers
             var eventos = await _repository.ListarEventosAsync();
             return Ok(eventos);
         }
+
+        [HttpGet]
+        [Route("contratos")]
+        [ApiKeyAuth] // Segurança mantida!
+        public async Task<IHttpActionResult> ListarContratos()
+        {
+            var contratos = await _repository.ListarContratosAsync();
+            return Ok(contratos);
+        }
     }
 }

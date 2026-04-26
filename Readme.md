@@ -58,3 +58,19 @@ Para demonstrar o resultado da arquitetura, preparei um script de teste de carga
    * Ao executar o script `Teste-idempotencia.ps1` devemos observar um sucesso no primeiro processamento e um erro de ID já processado na segunda tentativa. 
 
 > **Nota sobre Idempotência:** Tente disparar uma requisição manualmente com um `IdTransacao` que já exista. O banco de dados barrará a inserção e a API tratará o erro silenciosamente, sem duplicar o processamento ou quebrar o fluxo.
+
+## 🌟 Diferenciais da Versão Atual (V2)
+
+Nesta versão, o projeto evoluiu de um simples monitor de logs para uma ferramenta de **Gestão Financeira**:
+
+* **Visão Multicamadas:** Separação clara entre monitoramento técnico (Logs para TI) e visão de negócios (Cards para o Financeiro).
+* **Lógica de Acumulador Financeiro:** Ajuste na persistência para que os webhooks somem valores ao saldo do contrato, em vez de apenas sobrescrever.
+* **Alta Performance no Frontend:** Implementação de `Promise.all` no React, garantindo que as requisições de Logs e Contratos aconteçam em paralelo, reduzindo o tempo de carregamento.
+* **Dashboard Moderno:** Uso de KPIs (indicadores chave de performance) para exibir o Total Arrecadado e Contratos Ativos.
+
+---
+
+## 🚀 Como testar a Nova Visão Financeira
+
+1. No Dashboard, mude para a aba **"Visão Financeira (Negócios)"**.
+2. Observe os cards de contrato sendo atualizados e os valores sendo somados conforme os webhooks são processados em background.

@@ -69,7 +69,7 @@ namespace WebhookPagamentos.Infrastructure.Repositories
                 USING (SELECT @IdContrato AS IdContrato, @Valor AS Valor, @Status AS Status) AS source
                 ON target.IdContrato = source.IdContrato
                 WHEN MATCHED THEN 
-                    UPDATE SET Valor = source.Valor, Status = source.Status, UltimaAtualizacao = GETDATE()
+                    UPDATE SET Valor = target.Valor + source.Valor, Status = source.Status, UltimaAtualizacao = GETDATE()
                 WHEN NOT MATCHED THEN
                     INSERT (IdContrato, Valor, Status, UltimaAtualizacao)
                     VALUES (source.IdContrato, source.Valor, source.Status, GETDATE());";
@@ -100,6 +100,15 @@ namespace WebhookPagamentos.Infrastructure.Repositories
             using (var db = new System.Data.SqlClient.SqlConnection(_connectionString))
             {
                 string sql = "SELECT TOP 50 IdTransacao, Payload, StatusProcessamento, DataRecebimento FROM LogEventosBrutos ORDER BY DataRecebimento DESC";
+                return await Dapper.SqlMapper.QueryAsync(db, sql);
+            }
+        }
+
+        public async Task<System.Collections.Generic.IEnumerable<dynamic>> ListarContratosAsync()
+        {
+            using (var db = new System.Data.SqlClient.SqlConnection(_connectionString))
+            {
+                string sql = "SELECT IdContrato, Valor, Status, UltimaAtualizacao FROM StatusContrato ORDER BY UltimaAtualizacao DESC";
                 return await Dapper.SqlMapper.QueryAsync(db, sql);
             }
         }
