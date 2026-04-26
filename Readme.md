@@ -59,9 +59,9 @@ Para demonstrar o resultado da arquitetura, preparei um script de teste de carga
 
 > **Nota sobre Idempotência:** Tente disparar uma requisição manualmente com um `IdTransacao` que já exista. O banco de dados barrará a inserção e a API tratará o erro silenciosamente, sem duplicar o processamento ou quebrar o fluxo.
 
-## 🌟 Diferenciais da Versão Atual (V2)
+## Diferenciais da Versão Atual (V2)
 
-Nesta versão, o projeto evoluiu de um simples monitor de logs para uma ferramenta de **Gestão Financeira**:
+Nesta versão, o projeto evoluiu para possibilitar a visualização dos contratos, além dos logs:
 
 * **Visão Multicamadas:** Separação clara entre monitoramento técnico (Logs para TI) e visão de negócios (Cards para o Financeiro).
 * **Lógica de Acumulador Financeiro:** Ajuste na persistência para que os webhooks somem valores ao saldo do contrato, em vez de apenas sobrescrever.
@@ -70,7 +70,7 @@ Nesta versão, o projeto evoluiu de um simples monitor de logs para uma ferramen
 
 ---
 
-## 🚀 Como testar a Nova Visão Financeira
+## Como testar a Nova Visão Financeira
 
 1. No Dashboard, mude para a aba **"Visão Financeira (Negócios)"**.
 2. Observe os cards de contrato sendo atualizados e os valores sendo somados conforme os webhooks são processados em background.
